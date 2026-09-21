@@ -1,0 +1,32 @@
+{
+  "name": "cegid-license-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:visual": "node tests/audit-visual.mjs",
+    "test:e2e": "node tests/e2e-mobile.mjs",
+    "test:all": "vitest run && prisma validate && node tests/e2e-mobile.mjs",
+    "prisma:validate": "prisma validate"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@prisma/client": "^6.4.1",
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "prisma": "^6.4.1",
+    "tailwindcss": "^4",
+    "vitest": "^5.0.1"
+  }
+}

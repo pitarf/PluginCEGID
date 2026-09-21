@@ -1,0 +1,39 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+**/.env
+**/.env*.local
+!**/.env.example
+
+# Large backups and archives
+*.wpress
+*.tar.gz
+*.zip
+valedopais-farm-20260730-111202-6lm0geavzqzn/
+backups/
+
+# Prisma generated outputs / SQLite db
+*.db
+*.db-journal
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE & system
+.vscode/
+.idea/
+.agents/
+.claude/
+.windsurf/
+skills-lock.json

@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model License {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  domain      String?  // Domínio associado (ex: site-cliente.com). Fica null até a primeira ativação se quiser ativar no primeiro ping.
+  clientName  String
+  clientNif   String
+  status      String   @default("ACTIVE") // ACTIVE, SUSPENDED
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("licenses")
+}

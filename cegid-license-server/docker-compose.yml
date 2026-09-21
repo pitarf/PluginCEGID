@@ -1,0 +1,47 @@
+services:
+  cegid-license-db:
+    image: postgres:16-alpine
+    container_name: cegid-license-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cegid_user
+      POSTGRES_PASSWORD: cegid_secure_password_2026
+      POSTGRES_DB: cegid_license_db
+    ports:
+      - "127.0.0.1:5435:5432"
+    volumes:
+      - cegid-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cegid_user -d cegid_license_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cegid-license-net
+
+  cegid-license-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cegid-license-app
+    restart: unless-stopped
+    depends_on:
+      cegid-license-db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: "postgresql://cegid_user:cegid_secure_password_2026@cegid-license-db:5432/cegid_license_db?schema=public"
+      PORT: 3000
+    ports:
+      - "127.0.0.1:3010:3000"
+    networks:
+      - cegid-license-net
+
+volumes:
+  cegid-postgres-data:
+    name: cegid-postgres-data
+
+networks:
+  cegid-license-net:
+    name: cegid-license-net
+    driver: bridge
