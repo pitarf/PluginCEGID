@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.2] - 2026-09-21
+### Correção de Erro Crítico & Homologação em Produção (VPS Oracle Cloud)
+- **Correção de Fatal Error no PHP 8.0+:**
+  - Corrigida referência à constante indefinida `WC_CEGID_SYNC_PLUGIN_DIR` em `includes/class-cegid-integrity.php`, que causava `Fatal error: Uncaught Error: Undefined constant` na renderização do menu administrativo ("There has been a critical error on this website").
+  - Implementado fallback resiliente para `WC_CEGID_SYNC_PATH` e `dirname( __DIR__ ) . '/'`.
+  - Tratamento de segurança contra chave `SERVER_NAME` indefinida no array superglobal em `includes/class-cegid-admin-ui.php`.
+- **Validação Oficial de Produção com `valedopais.farm`:**
+  - Licença oficial gerada no painel: `VP-SZP2-YS05-BP60` para **Sociedade Agrícola Vale do País, Lda** (`valedopais.farm`).
+  - Vínculo de domínio e teste criptográfico SHA-256 validados com sucesso em produção.
+
 ## [1.4.1] - 2026-09-20
 ### Segurança & Auditoria (gstack / OWASP / Pontas Soltas)
 - **Instalação e Execução de Auditoria com gstack (`/cso`, `/review`):**

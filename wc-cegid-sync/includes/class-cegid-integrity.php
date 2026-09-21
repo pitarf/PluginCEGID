@@ -9,12 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! defined( 'WC_CEGID_SYNC_PLUGIN_DIR' ) ) {
+	define( 'WC_CEGID_SYNC_PLUGIN_DIR', defined( 'WC_CEGID_SYNC_PATH' ) ? WC_CEGID_SYNC_PATH : dirname( __DIR__ ) . '/' );
+}
+
 class Cegid_Integrity {
 
 	/**
 	 * Versão atual oficial do plugin.
 	 */
-	const VERSION = '1.4.1';
+	const VERSION = '1.4.2';
 
 	/**
 	 * Calcula o hash SHA-256 normalizado de um arquivo do plugin.
@@ -24,7 +28,8 @@ class Cegid_Integrity {
 	 * @return string|null Hash hexadecimal SHA-256 ou null se o arquivo não existir.
 	 */
 	public static function get_file_hash( $relative_path ) {
-		$full_path = WC_CEGID_SYNC_PLUGIN_DIR . ltrim( $relative_path, '/\\' );
+		$base_dir  = defined( 'WC_CEGID_SYNC_PATH' ) ? WC_CEGID_SYNC_PATH : ( defined( 'WC_CEGID_SYNC_PLUGIN_DIR' ) ? WC_CEGID_SYNC_PLUGIN_DIR : dirname( __DIR__ ) . '/' );
+		$full_path = rtrim( $base_dir, '/\\' ) . '/' . ltrim( $relative_path, '/\\' );
 		if ( ! file_exists( $full_path ) || ! is_readable( $full_path ) ) {
 			return null;
 		}

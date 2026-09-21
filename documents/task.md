@@ -1,7 +1,16 @@
 ## Pendentes
-- [ ] Ativar a licença no WooCommerce apontando para a URL pública da VPS.
+- [ ] Subir o novo [wc-cegid-sync.zip](file:///c:/Git/Wordpress/ValedoPais/wc-cegid-sync.zip) em produção e confirmar a abertura da aba Sincronizador.
 
 ## Concluído
+- [x] Identificação e eliminação cirúrgica do erro crítico do PHP 8.0+ (`Fatal error: Undefined constant WC_CEGID_SYNC_PLUGIN_DIR` em `class-cegid-integrity.php`).
+- [x] Proteção adicional na renderização administrativa contra `SERVER_NAME` nulo em `class-cegid-admin-ui.php`.
+- [x] Chave oficial gerada no painel da VPS: `VP-SZP2-YS05-BP60` para `Sociedade Agrícola Vale do País, Lda` (`valedopais.farm`, validade até 2046).
+- [x] Ativação e verificação criptográfica validadas com 100% de sucesso na VPS.
+- [x] Reempacotamento limpo do arquivo instalador [`wc-cegid-sync.zip`](file:///c:/Git/Wordpress/ValedoPais/wc-cegid-sync.zip).
+- [x] Teste de ativação bem-sucedido diretamente contra o endpoint seguro da VPS (`https://license.rafaelpitaoficial.com.br/api/license/activate`).
+- [x] Teste de verificação periódica (`/api/license/verify`) validado com status ACTIVE e expiração em 31/12/2028.
+- [x] Teste de proteção anti-pirataria multi-domínio e detecção de adulteração SHA-256 (Nível 3) bloqueando domínios piratas e arquivos modificados.
+- [x] Empacotamento do instalador de produção [`wc-cegid-sync.zip`](file:///c:/Git/Wordpress/ValedoPais/wc-cegid-sync.zip) atualizado.
 - [x] Implementação do Mecanismo Anti-Pirataria Nível 3: Verificação de Integridade e Tamper Detection por Checksum SHA-256 no plugin WordPress e validação cruzada no servidor de licenças (v1.4.1).
 - [x] Push do repositório no GitHub (`https://github.com/pitarf/PluginCEGID.git`) na branch `main`.
 - [x] Deploy e ativação do Servidor de Licenças em Docker na VPS Oracle Cloud (`cegid-license-app` na porta 3010, `cegid-license-db` na porta 5435 e Nginx configurado).

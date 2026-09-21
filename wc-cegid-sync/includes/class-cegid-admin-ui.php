@@ -681,7 +681,7 @@ class Cegid_Admin_UI {
 					</p>
 					<p style="margin: 0 0 15px 0; font-size: 13px; color: #374151;">
 						<strong><?php esc_html_e( 'Válida para o Domínio:', 'wc-cegid-sync' ); ?></strong> 
-						<code><?php echo esc_html( $_SERVER['SERVER_NAME'] ); ?></code>
+						<code><?php echo esc_html( ! empty( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : wp_parse_url( home_url(), PHP_URL_HOST ) ); ?></code>
 					</p>
 					<?php if ( ! empty( $license_expires ) ) : ?>
 						<p style="margin: 0 0 20px 0; font-size: 12px; color: #6b7280; font-style: italic;">
