@@ -39,6 +39,7 @@ function wc_cegid_sync_init() {
 	}
 
 	// Carrega as dependências internas do plugin
+	require_once WC_CEGID_SYNC_PATH . 'includes/class-cegid-integrity.php';
 	require_once WC_CEGID_SYNC_PATH . 'includes/class-cegid-settings.php';
 	require_once WC_CEGID_SYNC_PATH . 'includes/class-cegid-api-client.php';
 	require_once WC_CEGID_SYNC_PATH . 'includes/class-cegid-data-mapper.php';

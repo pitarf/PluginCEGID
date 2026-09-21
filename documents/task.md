@@ -2,6 +2,7 @@
 - [ ] Ativar a licença no WooCommerce apontando para a URL pública da VPS.
 
 ## Concluído
+- [x] Implementação do Mecanismo Anti-Pirataria Nível 3: Verificação de Integridade e Tamper Detection por Checksum SHA-256 no plugin WordPress e validação cruzada no servidor de licenças (v1.4.1).
 - [x] Push do repositório no GitHub (`https://github.com/pitarf/PluginCEGID.git`) na branch `main`.
 - [x] Deploy e ativação do Servidor de Licenças em Docker na VPS Oracle Cloud (`cegid-license-app` na porta 3010, `cegid-license-db` na porta 5435 e Nginx configurado).
 - [x] Validação de isolamento total de portas e zero interferência com VORTIXIA (`vorixa-app` 3005) e Connect TV (8080).

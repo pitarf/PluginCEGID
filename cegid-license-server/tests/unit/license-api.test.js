@@ -147,6 +147,51 @@ describe('Suíte de Testes de Licenciamento & Regras de Negócio (Vitest)', () =
       expect(res.status).toBe(403);
       expect(data.message).toContain('já está vinculada e ativa em outro domínio');
     });
+
+    it('Deve rejeitar ativação se algum arquivo do plugin foi adulterado (Tamper Detection - HTTP 403)', async () => {
+      const req = new Request('http://localhost/api/license/activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          key: 'VP-TEST-KEY-ACTIVE', 
+          domain: 'meudominio.com',
+          integrity: {
+            version: '1.4.1',
+            settings: 'hash_hackeado_com_licenca_removida_12345678901234567890123456789012',
+            ajax: '636fb59d55da25ad07f733048434bd6d362432bb0a6e11e6cd0368287e51681d',
+            client: 'a9373412a5b5d1d399c4d122766a9369b502d1c38c0b45a776e2aeed71356aed',
+            core: '9312d3e0368822d3c61056dbfbe67a26e38f2ef8ff5f2b874c08d43b58058117'
+          }
+        })
+      });
+      const res = await activatePOST(req);
+      const data = await res.json();
+      expect(res.status).toBe(403);
+      expect(data.code).toBe('tampered_code');
+      expect(data.message).toContain('Adulteração de código detectada');
+    });
+
+    it('Deve aceitar ativação com integridade oficial 100% válida e autêntica (HTTP 200)', async () => {
+      const req = new Request('http://localhost/api/license/activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          key: 'VP-TEST-KEY-ACTIVE', 
+          domain: 'meudominio.com',
+          integrity: {
+            version: '1.4.1',
+            settings: '646a1efbbd15328bf5f0daa386b5f508103123ea08b13ea497905d875d363d51',
+            ajax: '636fb59d55da25ad07f733048434bd6d362432bb0a6e11e6cd0368287e51681d',
+            client: 'a9373412a5b5d1d399c4d122766a9369b502d1c38c0b45a776e2aeed71356aed',
+            core: '9312d3e0368822d3c61056dbfbe67a26e38f2ef8ff5f2b874c08d43b58058117'
+          }
+        })
+      });
+      const res = await activatePOST(req);
+      const data = await res.json();
+      expect(res.status).toBe(200);
+      expect(data.success).toBe(true);
+    });
   });
 
   describe('Rota /api/license/verify', () => {

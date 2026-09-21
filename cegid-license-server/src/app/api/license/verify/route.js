@@ -1,16 +1,30 @@
 import { NextResponse } from 'next/server';
 import { getLicenseByKey } from '@/lib/license-db';
+import { validatePluginIntegrity } from '@/lib/integrity-validator';
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { key, domain } = body;
+    const { key, domain, integrity } = body;
 
     if (!key || !domain) {
       return NextResponse.json(
         { success: false, status: "invalid", message: "Chave e domínio são obrigatórios." },
         { status: 400 }
       );
+    }
+
+    // Validação de Integridade e Detecção de Código Adulterado (Nível 3 Tamper Detection)
+    if (integrity) {
+      const integrityResult = validatePluginIntegrity(integrity);
+      if (!integrityResult.isValid) {
+        return NextResponse.json({
+          success: false,
+          status: "tampered",
+          code: integrityResult.code,
+          message: integrityResult.message
+        }, { status: 403 });
+      }
     }
 
     const license = await getLicenseByKey(key);

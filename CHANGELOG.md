@@ -21,8 +21,11 @@
     - Identificada e corrigida ponta solta na rota `/api/licenses` (falta de parsing do body no POST).
   - **Auditoria Visual & Responsividade com Playwright (`npm run test:visual`):**
     - Script [`tests/audit-visual.mjs`](file:///c:/Git/Wordpress/ValedoPais/cegid-license-server/tests/audit-visual.mjs) executando Chromium Headless em 5 viewports: Desktop (1440x900), Tablet (768x1024), iPhone (390x844), Mobile SE (375x667) e Mobile Compact (320x568).
-  - **Arquitetura UI/UX Mobile-First (Cards & Modais em vez de Tabelas):**
-    - **Visualização em Cards no Mobile (`block lg:hidden`):** Substituída a exibição em tabela por Cards táteis e elegantes com bordas glassmorphism para celulares e tablets. Cada card destaca Nome, NIF, Badge de status pulsante, Box mono da chave com botão de copiar de fácil toque, grid de Domínio/Expiração e botões táteis largos de Suspender/Reativar e Excluir.
+  - **Mecanismo Anti-Pirataria Nível 3: Verificação de Integridade e Tamper Detection (SHA-256):**
+    - **Módulo de Autenticação de Código (`Cegid_Integrity`):** Implementado no plugin WordPress para gerar manifestos criptográficos SHA-256 normalizados dos 4 arquivos vitais (`class-cegid-settings.php`, `class-cegid-ajax-handler.php`, `class-cegid-api-client.php` e `wc-cegid-sync.php`).
+    - **Validação Cruzada no Servidor de Licenças (`integrity-validator.js`):** Cada ativação ou verificação remota compara os hashes recebidos com os originais oficiais assinados. Caso o cliente altere uma única linha para contornar a licença, o servidor bloqueia o acesso imediatamente com código `tampered_code`.
+    - **Bloqueio Local Preventivo:** Se os arquivos vitais forem corrompidos ou apagados, o método `Cegid_Settings::is_license_active()` retorna `false` por padrão.
+    - **Domínio de Produção Oficial com HTTPS:** Configurado subdomínio `https://license.rafaelpitaoficial.com.br` com certificado SSL Let's Encrypt na VPS.
     - **Modais de Confirmação Modernos:** Eliminado qualquer uso do `window.confirm()` nativo do navegador. Criado componente modal React com backdrop blur, ícones de alerta dinâmicos, textos explicativos e touch targets ergonômicos para ações críticas (Reset de Domínio e Exclusão).
     - **Visualização em Tabela Mantida para Telas Grandes (`hidden lg:block`):** Exibição compacta preservada apenas para resoluções de desktop.
 

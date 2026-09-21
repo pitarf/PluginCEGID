@@ -418,14 +418,16 @@ class Cegid_Ajax_Handler {
 		$server_url = defined( 'WC_CEGID_LICENSE_SERVER_URL' ) ? WC_CEGID_LICENSE_SERVER_URL : 'https://license.rafaelpitaoficial.com.br';
 
 		$domain = ! empty( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : wp_parse_url( home_url(), PHP_URL_HOST );
+		$integrity_manifest = class_exists( 'Cegid_Integrity' ) ? Cegid_Integrity::get_manifest() : [];
 
 		$response = wp_remote_post(
 			$server_url . '/api/license/activate',
 			[
 				'headers' => [ 'Content-Type' => 'application/json' ],
 				'body'    => wp_json_encode( [
-					'key'    => $license_key,
-					'domain' => $domain,
+					'key'       => $license_key,
+					'domain'    => $domain,
+					'integrity' => $integrity_manifest,
 				] ),
 				'timeout' => 15,
 			]

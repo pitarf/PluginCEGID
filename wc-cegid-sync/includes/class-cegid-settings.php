@@ -369,6 +369,11 @@ class Cegid_Settings {
 	 * @return bool True se a licença estiver ativa ou em modo de bypass comercial, false caso contrário.
 	 */
 	public static function is_license_active() {
+		// Valida integridade local dos arquivos vitais (Tamper Detection)
+		if ( class_exists( 'Cegid_Integrity' ) && ! Cegid_Integrity::is_local_intact() ) {
+			return false;
+		}
+
 		if ( defined( 'WC_CEGID_BYPASS_LICENSE' ) && WC_CEGID_BYPASS_LICENSE ) {
 			return true;
 		}
