@@ -414,8 +414,8 @@ class Cegid_Ajax_Handler {
 			wp_send_json_error( [ 'message' => __( 'Por favor, insira uma chave de licença válida.', 'wc-cegid-sync' ) ] );
 		}
 
-		// Determina o endereço do servidor de licenças. Fallback local: http://localhost:3000
-		$server_url = defined( 'WC_CEGID_LICENSE_SERVER_URL' ) ? WC_CEGID_LICENSE_SERVER_URL : 'http://localhost:3000';
+		// Determina o endereço do servidor de licenças. Fallback local: https://license.rafaelpitaoficial.com.br
+		$server_url = defined( 'WC_CEGID_LICENSE_SERVER_URL' ) ? WC_CEGID_LICENSE_SERVER_URL : 'https://license.rafaelpitaoficial.com.br';
 
 		$domain = ! empty( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : wp_parse_url( home_url(), PHP_URL_HOST );
 
@@ -482,7 +482,7 @@ class Cegid_Ajax_Handler {
 
 		// Notifica o servidor central de licenças para liberar o vínculo do domínio
 		if ( ! empty( $license_key ) ) {
-			$server_url = defined( 'WC_CEGID_LICENSE_SERVER_URL' ) ? WC_CEGID_LICENSE_SERVER_URL : 'http://localhost:3000';
+			$server_url = defined( 'WC_CEGID_LICENSE_SERVER_URL' ) ? WC_CEGID_LICENSE_SERVER_URL : 'https://license.rafaelpitaoficial.com.br';
 			$domain = ! empty( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : wp_parse_url( home_url(), PHP_URL_HOST );
 
 			wp_remote_post(
