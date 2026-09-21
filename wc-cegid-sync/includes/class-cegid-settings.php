@@ -364,9 +364,9 @@ class Cegid_Settings {
 	}
 
 	/**
-	 * Verifica se a licença do plugin está ativa ou se o bypass comercial está ativado.
+	 * Verifica se a licença do plugin está ativa.
 	 *
-	 * @return bool True se a licença estiver ativa ou em modo de bypass comercial, false caso contrário.
+	 * @return bool True se a licença estiver ativa no banco de dados e arquivos íntegros, false caso contrário.
 	 */
 	public static function is_license_active() {
 		// Valida integridade local dos arquivos vitais (Tamper Detection)
@@ -374,9 +374,6 @@ class Cegid_Settings {
 			return false;
 		}
 
-		if ( defined( 'WC_CEGID_BYPASS_LICENSE' ) && WC_CEGID_BYPASS_LICENSE ) {
-			return true;
-		}
 		$options = self::get_options();
 		return isset( $options['license_status'] ) && $options['license_status'] === 'active';
 	}

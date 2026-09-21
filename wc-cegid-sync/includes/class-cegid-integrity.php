@@ -18,7 +18,7 @@ class Cegid_Integrity {
 	/**
 	 * Versão atual oficial do plugin.
 	 */
-	const VERSION = '1.4.2';
+	const VERSION = '1.4.3';
 
 	/**
 	 * Calcula o hash SHA-256 normalizado de um arquivo do plugin.

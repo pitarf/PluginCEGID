@@ -602,8 +602,6 @@ class Cegid_Admin_UI {
 		$license_key = isset( $options['license_key'] ) ? $options['license_key'] : '';
 		$license_status = isset( $options['license_status'] ) ? $options['license_status'] : 'inactive';
 		$license_expires = isset( $options['license_expires'] ) ? $options['license_expires'] : '';
-
-		$bypass = defined( 'WC_CEGID_BYPASS_LICENSE' ) && WC_CEGID_BYPASS_LICENSE;
 		?>
 		<div class="cegid-tab-panel">
 			<!-- Caixa de Dicas e Guia Rápido da Aba de Licença -->
@@ -641,10 +639,10 @@ class Cegid_Admin_UI {
 						<div class="cegid-help-step-card">
 							<div class="cegid-help-step-header">
 								<span class="cegid-help-step-num">3</span>
-								<span><?php esc_html_e( 'Licença de Produção', 'wc-cegid-sync' ); ?></span>
+								<span><?php esc_html_e( 'Validação Criptográfica', 'wc-cegid-sync' ); ?></span>
 							</div>
 							<p class="cegid-help-step-desc">
-								<?php esc_html_e( 'Na loja Vale do País, a licença vitalícia de desenvolvimento está ativa permanentemente, garantindo operações ininterruptas.', 'wc-cegid-sync' ); ?>
+								<?php esc_html_e( 'O servidor valida a autenticidade e integridade dos arquivos vitais do plugin, assegurando estabilidade e segurança.', 'wc-cegid-sync' ); ?>
 							</p>
 						</div>
 					</div>
@@ -656,20 +654,7 @@ class Cegid_Admin_UI {
 
 			<hr style="margin: 20px 0; border: 0; border-top: 1px solid #f1f5f9;" />
 
-			<?php if ( $bypass ) : ?>
-				<div class="cegid-license-card active-card" style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 8px; max-width: 600px;">
-					<h4 style="margin: 0 0 10px 0; color: #166534; display: flex; align-items: center; gap: 8px;">
-						<span class="dashicons dashicons-shield" style="color: #15803d;"></span>
-						<?php esc_html_e( 'Licença Vitalícia Ativa (Vale do País)', 'wc-cegid-sync' ); ?>
-					</h4>
-					<p style="margin: 0 0 12px 0; font-size: 13px; color: #374151; line-height: 1.5;">
-						<?php esc_html_e( 'Este plugin está configurado com uma licença vitalícia e ilimitada de desenvolvimento. Todas as operações com a API da CEGID estão 100% ativas e liberadas para este domínio.', 'wc-cegid-sync' ); ?>
-					</p>
-					<p style="margin: 0; font-size: 11px; color: #6b7280; font-style: italic;">
-						<?php esc_html_e( 'Nota técnica: O módulo de validação remota de licenças está implementado sob o capô, pronto para ser ativado para comercialização futura a novos clientes.', 'wc-cegid-sync' ); ?>
-					</p>
-				</div>
-			<?php elseif ( $license_status === 'active' ) : ?>
+			<?php if ( $license_status === 'active' ) : ?>
 				<div class="cegid-license-card active-card" style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 8px; max-width: 600px;">
 					<h4 style="margin: 0 0 10px 0; color: #166534; display: flex; align-items: center; gap: 8px;">
 						<span class="dashicons dashicons-shield" style="color: #15803d;"></span>

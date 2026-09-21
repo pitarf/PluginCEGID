@@ -52,8 +52,7 @@ Como ações de recarga de pedidos e existências recarregam a página via JavaS
 3. Se o parâmetro existir, exibe-se o Toast correspondente e limpa-se a query string da URL imediatamente utilizando `window.history.replaceState`, evitando exibições repetidas em novos refreshes normais.
 
 ### Constantes de Controle:
-* `WC_CEGID_BYPASS_LICENSE`: Se definida como `true` (padrão atual para o cliente Vale do País), ignora a necessidade de validar chaves no servidor de licenças, ativando o plugin de forma vitalícia e irrestrita.
-* `WC_CEGID_LICENSE_SERVER_URL`: URL de verificação das chaves. Se omitida, assume o fallback local `http://localhost:3000`.
+* `WC_CEGID_LICENSE_SERVER_URL`: URL oficial do servidor de licenças. Se omitida, assume o fallback de produção `https://license.rafaelpitaoficial.com.br`.
 
 ---
 
@@ -89,11 +88,8 @@ Localizado no diretório `cegid-license-server/`, o servidor foi desenvolvido em
    cd cegid-license-server
    npm run dev
    ```
-2. No WooCommerce local, desative a constante no `wc-cegid-sync.php`:
-   ```php
-   define( 'WC_CEGID_BYPASS_LICENSE', false );
-   ```
-3. Utilize a chave de teste pré-definida em memória: **`VP-VALEDOPAIS-TEST-KEY-12345`** na aba de ativação do plugin para testar o fluxo de ponta a ponta.
+2. No WooCommerce local, acesse a aba "Ativação da Licença".
+3. Utilize a chave de teste pré-definida: **`VP-VALEDOPAIS-TEST-KEY-12345`** (ou gere uma nova no painel) para validar a ativação.
 
 ### Deploy na VPS:
 Consulte o guia completo em [`deploy/setup-vps-instructions.md`](deploy/setup-vps-instructions.md).

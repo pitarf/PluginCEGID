@@ -3,7 +3,7 @@
  * Plugin Name: WC CEGID Sync
  * Plugin URI: https://github.com/valedopais/wc-cegid-sync
  * Description: Sincroniza pedidos concluídos do WooCommerce e estoques com a API da CEGID (TOConline).
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Rafael Pita
  * Author URI: https://wa.me/5521966149077
  * License: GPLv2 or later
@@ -19,13 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define constantes do plugin para uso global
-define( 'WC_CEGID_SYNC_VERSION', '1.4.2' );
+define( 'WC_CEGID_SYNC_VERSION', '1.4.3' );
 define( 'WC_CEGID_SYNC_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WC_CEGID_SYNC_PLUGIN_DIR', WC_CEGID_SYNC_PATH );
 define( 'WC_CEGID_SYNC_URL', plugin_dir_url( __FILE__ ) );
 define( 'WC_CEGID_SYNC_BASENAME', plugin_basename( __FILE__ ) );
- 
-// Controle de ativação estrita de licença (false exige ativação via chave no servidor de licenças)
-define( 'WC_CEGID_BYPASS_LICENSE', false );
 
 /**
  * Função de inicialização principal do plugin.

@@ -1,8 +1,10 @@
 ## Pendentes
-- [ ] Subir o novo [wc-cegid-sync.zip](file:///c:/Git/Wordpress/ValedoPais/wc-cegid-sync.zip) em produção e confirmar a abertura da aba Sincronizador.
+- [ ] Subir o novo [wc-cegid-sync.zip](file:///c:/Git/Wordpress/ValedoPais/wc-cegid-sync.zip) (v1.4.3) em produção e ativar a licença oficial.
 
 ## Concluído
-- [x] Identificação e eliminação cirúrgica do erro crítico do PHP 8.0+ (`Fatal error: Undefined constant WC_CEGID_SYNC_PLUGIN_DIR` em `class-cegid-integrity.php`).
+- [x] Remoção definitiva de qualquer resquício de bypass comercial (`WC_CEGID_BYPASS_LICENSE`) do código do plugin e da interface (v1.4.3).
+- [x] Atualização dos manifestos oficiais SHA-256 no validador de integridade (`integrity-validator.js`) para a versão 1.4.3.
+- [x] Rebuild e reinicialização do container `cegid-license-app` na VPS Oracle Cloud com suporte a 1.4.3.
 - [x] Proteção adicional na renderização administrativa contra `SERVER_NAME` nulo em `class-cegid-admin-ui.php`.
 - [x] Chave oficial gerada no painel da VPS: `VP-SZP2-YS05-BP60` para `Sociedade Agrícola Vale do País, Lda` (`valedopais.farm`, validade até 2046).
 - [x] Ativação e verificação criptográfica validadas com 100% de sucesso na VPS.

@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.3] - 2026-09-21
+### Hardening de Segurança: Remoção Definitiva do Bypass Comercial
+- **Eliminação Total de Bypass de Licença (`WC_CEGID_BYPASS_LICENSE`):**
+  - Removida por completo a constante `WC_CEGID_BYPASS_LICENSE` do código-fonte (`wc-cegid-sync.php`, `class-cegid-settings.php`, `class-cegid-admin-ui.php` e `MANUAL_DEV.md`).
+  - Impossibilitada qualquer tentativa de burlar a validação local por alteração de constantes ou injeção no `wp-config.php`.
+  - O plugin agora opera exclusivamente no modo estrito comercial com validação criptográfica obrigatória via API pública da VPS.
+  - Atualizados os hashes oficiais de integridade SHA-256 no servidor de licenças para a versão `1.4.3`.
+
 ## [1.4.2] - 2026-09-21
 ### Correção de Erro Crítico & Homologação em Produção (VPS Oracle Cloud)
 - **Correção de Fatal Error no PHP 8.0+:**
